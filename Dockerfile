@@ -167,8 +167,10 @@ RUN apt-get update -qqy \
 #============
 # JRuby time
 #============
-ENV JRUBY_VERSION 9.1.2.0
-ENV JRUBY_SHA256 60598a465883ab4c933f805de4a7f280052bddc793b95735465619c03ca43f35
+# ENV JRUBY_VERSION 9.1.2.0
+# ENV JRUBY_SHA256 60598a465883ab4c933f805de4a7f280052bddc793b95735465619c03ca43f35
+ENV JRUBY_VERSION 9.0.5.0
+ENV JRUBY_SHA256 9ef392bd859690c9a838f6475040345e0c512f7fcc0b37c809a91cf671f5daf3
 RUN mkdir /opt/jruby \
   && curl -fSL https://s3.amazonaws.com/jruby.org/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz -o /tmp/jruby.tar.gz \
   && echo "$JRUBY_SHA256 /tmp/jruby.tar.gz" | sha256sum -c - \
