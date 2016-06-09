@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# set -e: exit asap if a command exits with a non-zero status
+set -e
+
+echo "#=============================="
+echo "# Scenario 1: Check JRuby works"
+echo "#=============================="
+docker run --name=jruby --rm -ti local/jruby run_test

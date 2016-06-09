@@ -1,0 +1,20 @@
+sudo: required
+
+services:
+  - docker
+
+# Omit running tests on temporal branches
+branches:
+  except:
+    - /^tmp/
+
+language: ruby
+
+before_install:
+  - travis_retry ./test/before_install_setup
+
+install:
+  - travis_retry ./test/before_install_build
+
+script:
+  - ./test/script
