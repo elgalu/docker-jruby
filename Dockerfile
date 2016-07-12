@@ -3,9 +3,9 @@
 ######################################################
 #== Ubuntu xenial is 16.04, i.e. FROM ubuntu:16.04
 # search for more at https://registry.hub.docker.com/_/ubuntu/tags/manage/
-FROM ubuntu:xenial-20160525
+FROM ubuntu:xenial-20160706
 ENV UBUNTU_FLAVOR="xenial" \
-    UBUNTU_DATE="20160525"
+    UBUNTU_DATE="20160706"
 
 #== Ubuntu flavors - common
 RUN  echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR} main universe\n" > /etc/apt/sources.list \
@@ -15,6 +15,13 @@ MAINTAINER Leo Gallucci <elgalu3@gmail.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
+
+# http://askubuntu.com/a/235911/134645
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com \
+      3B4FE6ACC0B21F32 \
+      40976EAF437D05B5 \
+      2EA8F35793D8809A \
+  && apt-key update -qqy
 
 #========================
 # Miscellaneous packages
@@ -167,6 +174,7 @@ RUN apt-get update -qqy \
 #============
 # JRuby time
 #============
+# https://hub.docker.com/_/jruby/
 # ENV JRUBY_VERSION 9.1.2.0
 # ENV JRUBY_SHA256 60598a465883ab4c933f805de4a7f280052bddc793b95735465619c03ca43f35
 ENV JRUBY_VERSION 9.0.5.0
