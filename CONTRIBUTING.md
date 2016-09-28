@@ -6,18 +6,18 @@ For pull requests or local commits:
     ./test/before_install_build && ./test/script
     docker run --rm -ti local/jruby jruby_version
     travis lint #if you changed .travis.yml
-    git checkout -b tmp-9.0.5d #name your branch according to your changes
+    git checkout -b tmp-9.0.5e #name your branch according to your changes
     #git add ... git commit ... git push ... open pull request
 
 For repository owners only:
 
-    git commit -m "BUA-637 Upgrade Ubuntu xenial date to 20160923.1"
-    git tag -d latest && git tag 9.0.5d && git push origin tmp-9.0.5d && git push --tags
+    git commit -m "BUA-637 Fallback to Java7"
+    git tag -d latest && git tag 9.0.5e && git push origin tmp-9.0.5e && git push --tags
 
 -- Wait for Travis to pass OK: https://travis-ci.org/elgalu/jruby-in-docker/builds
 -- Make sure changes got merged into master by elgalubot: https://github.com/elgalu/jruby-in-docker
 
-    git checkout master && git pull && git branch -d tmp-9.0.5d && git push origin --delete tmp-9.0.5d
+    git checkout master && git pull && git branch -d tmp-9.0.5e && git push origin --delete tmp-9.0.5e
 
 -- Re-add TBD_* section in CHANGELOG.md starting with TBD_DOCKER_TAG
 -- Upgrade release tag in github.com with latest CHANGELOG.md
@@ -25,9 +25,9 @@ For repository owners only:
 ## Retry
 Failed in Travis? retry
 
-    git tag -d 9.0.5d && git push origin :9.0.5d
+    git tag -d 9.0.5e && git push origin :9.0.5e
     #git add ...
-    git commit --amend && git tag 9.0.5d && git push --force origin tmp-9.0.5d && git push --tags
+    git commit --amend && git tag 9.0.5e && git push --force origin tmp-9.0.5e && git push --tags
 
 ## Docker push from Travis CI
 Travis [steps](https://docs.travis-ci.com/user/docker/#Pushing-a-Docker-Image-to-a-Registry) involve `docker login` and docker credentials encryptions.
