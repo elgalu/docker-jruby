@@ -7,20 +7,20 @@ Note image ids also change after scm-source.json has being updated which trigger
 ###### To get container versions
     docker exec jruby versions
 
-## TBD_DOCKER_TAG
- + Date: TBD_DATE
+## 9.0.5d
+ + Date: 2016-09-28
  + Upgrade Ubuntu xenial date to 20160923.1
  + Image tag details:
-  + Timezone: TBD_TIME_ZONE
-  + FROM ubuntu:UBUNTU_FLAVOR-UBUNTU_DATE
-  + JRuby: TBD_JRUBY_VERSION
+  + Timezone: Europe/Berlin
+  + FROM ubuntu:xenial-20160923.1
+  + JRuby: 9.0.5.0
   + Tested on kernel dev host: 4.4.0-38-generic x86_64
-  + Tested on kernel CI  host: TBD_HOST_UNAME
+  + Tested on kernel CI  host: 3.19.0-66-generic x86_64
   + Built at dev host with: Docker version 1.12.1, build 23cf638
-  + Built at CI  host with: Docker version TBD_DOCKER_VERS, build TBD_DOCKER_BUILD
-  + Image size: TBD_IMAGE_SIZE
-  + Digest: TBD_DIGEST
-  + Image ID: TBD_IMAGE_ID
+  + Built at CI  host with: Docker version 1.12.1, build 23cf638
+  + Image size: 924.1 MB
+  + Digest: sha256:79b4d5bddcfeabc48358b3efcda4c1916891e5ddf878d78b6e1ae8ab98e7bef0
+  + Image ID: sha256:af3f3f549ffb19db0ff5c1bbbfd45970731d2685d36ef5507edea7af2eecfee7
 
 ## 9.0.5c
  + Date: 2016-09-02
