@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 GIT_AUTHOR=lgallucci
-GIT_URL="https://github.com/elgalu/docker-jruby"
+GIT_URL="https://github.com/elgalu/jruby-in-docker"
 GIT_SHA1=$(git rev-parse HEAD)
 
 cat >scm-source.json <<EOF

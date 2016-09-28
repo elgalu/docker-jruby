@@ -3,9 +3,9 @@
 ######################################################
 #== Ubuntu xenial is 16.04, i.e. FROM ubuntu:16.04
 # search for more at https://registry.hub.docker.com/_/ubuntu/tags/manage/
-FROM ubuntu:xenial-20160818
+FROM ubuntu:xenial-20160923.1
 ENV UBUNTU_FLAVOR="xenial" \
-    UBUNTU_DATE="20160818"
+    UBUNTU_DATE="20160923.1"
 
 #== Ubuntu flavors - common
 RUN  echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR} main universe\n" > /etc/apt/sources.list \
@@ -25,6 +25,9 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5 \
   && apt-key update -qqy
 # Remove with: sudo apt-key del 3B4FE6ACC0B21F32
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 \
+  && apt-key update -qqy
+# Remove with: sudo apt-key del A2F683C52980AECF
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A2F683C52980AECF \
   && apt-key update -qqy
 
 #========================

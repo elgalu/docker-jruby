@@ -48,7 +48,7 @@ git_config() {
 ################################################
 git_co_fetch_merge_stash() {
   git checkout -b travis-${TRAVIS_TAG}
-  git remote add github "https://elgalubot:${GH_TOKEN}@github.com/elgalu/docker-jruby.git"
+  git remote add github "https://elgalubot:${GH_TOKEN}@github.com/elgalu/jruby-in-docker.git"
   git fetch github
   git stash save || true
   git checkout -t github/master -b github/master

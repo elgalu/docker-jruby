@@ -1,4 +1,4 @@
-# docker-jruby
+# jruby-in-docker
 Latest JRuby in latest Ubuntu inside a docker image
 
 ## Disclaimer
