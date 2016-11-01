@@ -3,16 +3,18 @@
 ######################################################
 #== Ubuntu xenial is 16.04, i.e. FROM ubuntu:16.04
 # search for more at https://registry.hub.docker.com/_/ubuntu/tags/manage/
-FROM ubuntu:xenial-20160923.1
+FROM ubuntu:xenial-20161010
 ENV UBUNTU_FLAVOR="xenial" \
-    UBUNTU_DATE="20160923.1"
+    UBUNTU_DATE="20161010"
 
 #== Ubuntu flavors - common
 RUN  echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR} main universe\n" > /etc/apt/sources.list \
-  && echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR}-updates main universe\n" >> /etc/apt/sources.list
+  && echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR}-updates main universe\n" >> /etc/apt/sources.list \
+  && echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR}-security main universe\n" >> /etc/apt/sources.list
 
-MAINTAINER Leo Gallucci <elgalu3@gmail.com>
+MAINTAINER Leo Gallucci <elgalu3+team-tip@gmail.com>
 
+# No interactive frontend during docker build
 ENV DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true
 
@@ -169,18 +171,18 @@ ENV NORMAL_USER_HOME /home/${NORMAL_USER}
 # Regarding urandom see
 #  http://stackoverflow.com/q/26021181/511069
 #  https://github.com/SeleniumHQ/docker-selenium/issues/14#issuecomment-67414070
-RUN apt-get -qqy update \
-  && apt-get -qqy install \
-    software-properties-common \
-  && add-apt-repository ppa:openjdk-r/ppa \
-  && apt-get -qqy update \
-  && apt-get -qqy install \
-    openjdk-7-jre-headless \
-  && sed -i 's/securerandom.source=file:\/dev\/urandom/securerandom.source=file:\/dev\/.\/urandom/g' \
-       /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security \
-  && sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' \
-       /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security \
-  && rm -rf /var/lib/apt/lists/*
+# RUN apt-get -qqy update \
+#   && apt-get -qqy install \
+#     software-properties-common \
+#   && add-apt-repository ppa:openjdk-r/ppa \
+#   && apt-get -qqy update \
+#   && apt-get -qqy install \
+#     openjdk-7-jre-headless \
+#   && sed -i 's/securerandom.source=file:\/dev\/urandom/securerandom.source=file:\/dev\/.\/urandom/g' \
+#        /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security \
+#   && sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' \
+#        /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security \
+#   && rm -rf /var/lib/apt/lists/*
 
 #==============================
 # Java8 - OpenJDK JRE headless
@@ -189,14 +191,14 @@ RUN apt-get -qqy update \
 # Regarding urandom see
 #  http://stackoverflow.com/q/26021181/511069
 #  https://github.com/SeleniumHQ/docker-selenium/issues/14#issuecomment-67414070
-# RUN apt-get update -qqy \
-#   && apt-get -qqy install \
-#     openjdk-8-jre-headless \
-#   && sed -i 's/securerandom.source=file:\/dev\/urandom/securerandom.source=file:\/dev\/.\/urandom/g' \
-#        /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security \
-#   && sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' \
-#        /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security \
-#   && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qqy \
+  && apt-get -qqy install \
+    openjdk-8-jre-headless \
+  && sed -i 's/securerandom.source=file:\/dev\/urandom/securerandom.source=file:\/dev\/.\/urandom/g' \
+       /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security \
+  && sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' \
+       /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security \
+  && rm -rf /var/lib/apt/lists/*
 
 #============
 # JRuby time
